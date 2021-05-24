@@ -7,18 +7,15 @@
 </template>
 
 <script>
+import { ref, computed } from "vue";
+
 export default {
-  name: "counter",
-  data() {
-    return {
-      count: 0
-    };
+  name: "Counter",
+  setup() {
+    const count = ref(0);
+    const countMessage = computed(() => "回数: " + count.value);
+    return { count, countMessage };
   },
-  computed: {
-    countMessage() {
-      return "回数: " + this.count;
-    }
-  }
 };
 </script>
 

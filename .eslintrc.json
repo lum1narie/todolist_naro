@@ -1,26 +1,26 @@
 {
   "root": true,
-  "parser": "vue-eslint-parser",
-  "parserOptions": {
-    "parser": "@typescript-eslint/parser",
-    "sourceType": "module"
-  },
   "env": {
     "browser": true,
     "es2021": true
   },
-  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:vue/vue3-recommended",
-    "@vue/prettier"
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "no-console": "warn",
     "no-debugger": "warn",
-    "@typescript-eslint/no-unused-vars": "off",
-    "vue/attributes-order": ["warn", {
-      "alphabetical": true
-    }]
+    "vue/custom-event-name-casing": [
+      "error",
+      "camelCase"
+    ],
+    "vue/attributes-order": [
+      "warn",
+      {
+        "alphabetical": true
+      }
+    ]
   }
 }

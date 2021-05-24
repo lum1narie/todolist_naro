@@ -7,13 +7,16 @@
 
 <script>
 import Counter from "./Counter.vue";
+
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
   components: {
-    Counter
-  }
+    Counter,
+  },
+  props: {
+    msg: {
+      type: String,
+      default: "",
+    }
+  },
 };
 </script>
