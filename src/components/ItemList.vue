@@ -7,6 +7,17 @@
         <div class="price">{{ item.price }} 円</div>
       </div>
     </div>
+    <div>
+      <label>
+        名前
+        <input v-model="newItemName" type="text" />
+      </label>
+      <label>
+        価格
+        <input v-model="newItemPrice" type="number" />
+      </label>
+      <button @click="addItem">add</button>
+    </div>
   </div>
 </template>
 
@@ -19,7 +30,25 @@ export default {
       { name: "たまご", price: 100 },
       { name: "りんご", price: 160 },
     ]);
-    return {items};
+    const newItemName = ref("");
+    const newItemPrice = ref(0);
+
+    const resetNewItem = () => {
+      newItemName.value = "";
+      newItemPrice.value = 0;
+    };
+
+    const addItem = () => {
+      if (newItemName.value == "") {
+        alert("名前を入力してください");
+        return;
+      }
+
+      items.value.push({ name: newItemName.value, price: newItemPrice.value });
+      resetNewItem();
+    };
+
+    return { items, newItemName, newItemPrice, addItem };
   },
 };
 </script>
