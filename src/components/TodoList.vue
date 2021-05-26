@@ -13,7 +13,7 @@
         class="task"
         v-for="task in sortedTaskByRevPriority"
         :key="task.id"
-        :class="{ todo: task.state === 0, done: task.state === 1 }"
+        :class="{ todo: task.stateId === 0, done: task.stateId === 1 }"
       >
         <td class="switch">
           <button @click="switchTaskState(task.id)">
@@ -176,6 +176,13 @@ export default {
   border: 1px solid #333;
 }
 
+.todo td{
+  background-color: cornsilk;
+}
+.done td{
+  background-color: gray;
+}
+
 .name {
   margin-left: 10px;
   margin-right: 10px;
@@ -203,14 +210,9 @@ th.task-h-switch {
 td.switch,
 td.remove {
   border: 0;
+  background-color: unset;
 }
 
-.todo {
-  background-color: cornsilk;
-}
-.done {
-  background-color: gray;
-}
 
 .new-task {
   margin-top: 20px;
