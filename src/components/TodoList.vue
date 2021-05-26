@@ -1,12 +1,13 @@
 <template>
   <div>
+    <p>Task List</p>
     <table class="tasks">
-      <tr class="tasks-title">
-        <th class="task-switch"></th>
-        <th class="task-state">状態</th>
-        <th class="task-priority">優先度</th>
-        <th class="task-name">名前</th>
-        <th class="task-remove"></th>
+      <tr class="tasks-header">
+        <th class="task-h-switch"></th>
+        <th class="task-h-state">状態</th>
+        <th class="task-h-priority">優先度</th>
+        <th class="task-h-name">名前</th>
+        <th class="task-h-remove"></th>
       </tr>
       <tr
         class="task"
@@ -14,7 +15,7 @@
         :key="task.id"
         :class="{ todo: task.state === 0, done: task.state === 1 }"
       >
-        <td>
+        <td class="switch">
           <button @click="switchTaskState(task.id)">
             {{ getSwitchStateLabel(task.stateId) }}
           </button>
@@ -30,7 +31,7 @@
         <td>
           <div class="name">{{ task.name }}</div>
         </td>
-        <td>
+        <td class="remove">
           <button @click="deleteTask(task.id)">削除</button>
         </td>
       </tr>
@@ -168,11 +169,10 @@ export default {
 .tasks {
   margin-left: auto;
   margin-right: auto;
+  border-collapse: collapse;
 }
-.tasks,
 .tasks td,
 .tasks th {
-  border-collapse: collapse;
   border: 1px solid #333;
 }
 
@@ -185,19 +185,24 @@ export default {
   margin-right: 10px;
 }
 
-.task-remove,
-.task-switch {
+th.task-h-remove,
+th.task-h-switch {
   min-width: 3em;
+  border: 0;
 }
-
-.task-name {
+.task-h-name {
   min-width: 6em;
 }
-.task-state {
+.task-h-state {
   min-width: 5em;
 }
-.task-priority {
+.task-h-priority {
   min-width: 7em;
+}
+
+td.switch,
+td.remove {
+  border: 0;
 }
 
 .todo {
