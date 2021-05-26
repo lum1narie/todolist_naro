@@ -10,7 +10,7 @@
       </tr>
       <tr
         class="task"
-        v-for="task in tasks"
+        v-for="task in sortedTaskByRevPriority"
         :key="task.id"
         :class="{ todo: task.state === 0, done: task.state === 1 }"
       >
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export default {
   setup() {
@@ -104,6 +104,10 @@ export default {
       return tasks.value.findIndex((elm) => elm.id === id);
     };
 
+    const sortedTaskByRevPriority = computed(() =>
+      tasks.value.sort((a, b) => -(a.priorityId - b.priorityId))
+    );
+
     const addTask = () => {
       if (newTaskName.value === "") {
         alert("タスク名を入力してください");
@@ -145,7 +149,7 @@ export default {
     };
 
     return {
-      tasks,
+      sortedTaskByRevPriority,
       newTaskName,
       getStateById,
       getPriorityByVal,
